@@ -19,11 +19,11 @@ export async function getCurrentUser(): Promise<User> {
   let displayName = h.get("x-ms-client-principal-name");
   let email = "";
 
-  // Try to get more info from the ID token
-  const idToken = h.get("x-ms-token-aad-id-token");
+  // Get user info from Google ID token
+  const idToken = h.get("x-ms-token-google-id-token");
   if (idToken) {
     const claims = decodeJwtPayload(idToken);
-    email = claims.email || claims.preferred_username || claims.upn || "";
+    email = claims.email || "";
     if (!displayName) {
       displayName = claims.name || claims.given_name || "";
     }
