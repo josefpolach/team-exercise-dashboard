@@ -26,9 +26,9 @@ export default async function DashboardPage({ searchParams }: Props) {
   const quote = getRandomQuote();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="h-screen flex flex-col bg-background">
       <Nav currentPath="/" isCoach={currentUser.role === "coach"} />
-      <main className="max-w-4xl mx-auto px-4 py-6 space-y-6">
+      <main className="max-w-4xl w-full mx-auto px-4 py-6 flex flex-col gap-6 flex-1 min-h-0">
         {/* Motivational quote */}
         <div className="text-center py-4 px-6 bg-gradient-to-r from-orange-50 to-yellow-50 rounded-2xl border border-orange-100">
           <p className="text-stone-600 italic">&ldquo;{quote}&rdquo;</p>
@@ -38,6 +38,7 @@ export default async function DashboardPage({ searchParams }: Props) {
         <WeekNav weekId={weekId} />
 
         {/* Weekly grid */}
+        <div className="flex-1 min-h-0">
         <WeeklyGrid
           weekId={weekId}
           users={users}
@@ -45,6 +46,7 @@ export default async function DashboardPage({ searchParams }: Props) {
           highFives={highFives}
           currentUserId={currentUser.userId}
         />
+        </div>
 
         {/* Legend */}
         <div className="flex flex-wrap gap-4 justify-center text-sm text-stone-500 pt-2">

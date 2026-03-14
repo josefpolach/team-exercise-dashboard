@@ -34,8 +34,8 @@ export default function WeeklyGrid({ weekId, users, checkIns, highFives, current
   }
 
   return (
-    <div className="overflow-x-auto">
-      <div className="grid gap-1 min-w-[600px]" style={{ gridTemplateColumns: "140px repeat(7, 1fr)" }}>
+    <div className="overflow-x-auto h-full">
+      <div className="grid gap-1 min-w-[600px] h-full" style={{ gridTemplateColumns: "140px repeat(7, 1fr)", gridTemplateRows: `auto repeat(${users.length}, 1fr)` }}>
         {/* Header row */}
         <div />
         {dates.map((date, i) => {
