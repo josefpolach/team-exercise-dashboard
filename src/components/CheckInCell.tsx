@@ -36,7 +36,7 @@ export default function CheckInCell({
     return (
       <a
         href="/checkin"
-        className="flex items-center justify-center w-full h-full min-h-[48px] rounded-xl border-2 border-dashed border-accent/40 hover:border-accent hover:bg-accent-light transition-all animate-pulse-soft"
+        className="flex items-center justify-center w-full h-full min-h-[72px] rounded-xl border-2 border-dashed border-accent/40 hover:border-accent hover:bg-accent-light transition-all animate-pulse-soft"
         title="Zaznamenat cvičení"
       >
         <span className="text-accent text-xl">+</span>
@@ -47,7 +47,7 @@ export default function CheckInCell({
   if (!checkIn) {
     return (
       <div
-        className={`flex items-center justify-center w-full h-full min-h-[48px] rounded-xl ${
+        className={`flex items-center justify-center w-full h-full min-h-[72px] rounded-xl ${
           isPast ? "bg-stone-50 text-stone-300" : "bg-stone-50/50"
         }`}
       >
@@ -91,7 +91,7 @@ export default function CheckInCell({
     <div className="relative">
       <button
         onClick={() => setShowDetail(!showDetail)}
-        className={`flex flex-col items-center justify-center w-full min-h-[48px] rounded-xl transition-all hover:scale-105 ${
+        className={`flex flex-col items-center justify-center w-full min-h-[72px] rounded-xl transition-all hover:scale-105 ${
           isToday ? "bg-accent-light ring-2 ring-accent/30" : "bg-white"
         } shadow-sm hover:shadow-md`}
       >
