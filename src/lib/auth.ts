@@ -40,16 +40,26 @@ export async function getCurrentUser(): Promise<User> {
     throw new Error("Not authenticated");
   }
 
-  // Check if user exists
-  const existing = await getUser(userId);
-  if (existing) {
-    return existing;
-  }
-
-  // Auto-provision new user
   const coachIds = (process.env.COACH_USER_IDS || "").split(",").map((s) => s.trim());
   const role = coachIds.includes(userId) ? "coach" : "member";
 
+  // Check if user exists
+  const existing = await getUser(userId);
+  if (existing) {
+    // Update role and display info in case they changed
+    const updated: User = {
+      ...existing,
+      role,
+      displayName: displayName || existing.displayName,
+      email: email || existing.email,
+    };
+    if (updated.role !== existing.role || updated.displayName !== existing.displayName || updated.email !== existing.email) {
+      await upsertUser(updated);
+    }
+    return updated;
+  }
+
+  // Auto-provision new user
   const newUser: User = {
     userId,
     displayName: displayName || email || userId,
